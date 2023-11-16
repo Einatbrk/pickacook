@@ -4,8 +4,9 @@ const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: '../../dataBase/blog_platform.db',
   logging: (msg) => {
-    console.log('Sequelize log:', msg);
-}});
+    // console.log('Sequelize log:', msg)
+  }
+});
 
 const Session = sequelize.define('Session', {
   sid: {

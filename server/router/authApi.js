@@ -1,15 +1,8 @@
 const express = require('express');
-const sequelize = require('./sequelize.js');
 const router = express.Router();
 const db = require('../../dataBase/dataBase.js');
 const functions = require('../helper/functions.js');
-const session = require('express-session');
-const SequelizeStore = require('express-session-sequelize')(session.Store);
-const nodemailer = require('nodemailer');
-const oneDay = 1000 * 60 * 60 * 24;
-const sessionConfig = require('./sessionConfig.js');
 
-router.use(session(sessionConfig));
 router.post('/register', async (req, res) => {
     const { username, password, email } = req.body;
 
@@ -137,25 +130,29 @@ router.post('/recover-password-email', (req, res) => {
 });
 
 router.post('/login', functions.validateLogin, functions.authenticate, (req, res) => {
-    console.log('Session ID for user:', req.sessionID);
-    console.log('Session user ID in login route:', req.session.userId);
+    // console.log('Session ID for user:', req.sessionID);
+    // console.log('Session user ID in login route:', req.session.userId);
 
     res.json({ success: true, user: req.user, sessionID: req.sessionID, userId: req.session.userId });
 });
 
 router.post('/logout', (req, res) => {
-    console.log('Session ID for user in logout route:', req.sessionID);
-    console.log('Session user ID in logout route:', req.session.userId);
-
+    // console.log('Session ID for user in logout route:', req.sessionID);
+    // console.log('Session user ID in logout route:', req.session.userId);
+    console.log('BEFORE req.session.destroy, req.session:', req.session)
+    
     if (!req.session.userId) {
+        console.log('!req.session.userId ==', !req.session.userId)
         return res.status(401).json({ success: false, error: 'User not logged in' });
     }
-
+    //else
     req.session.destroy((err) => {
+        console.log('AFTER req.session.destroy, req.session:', req.session)
         if (err) {
             console.error('Error during session destruction:', err);
             return res.status(500).json({ success: false, error: 'Internal server error' });
         }
+        // else 
         res.json({ success: true });
     });
 });

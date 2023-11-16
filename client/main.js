@@ -198,22 +198,24 @@ async function onLoginHandle(event) {
 
     // Store userId in localStorage
     localStorage.setItem('userId', userId);
-    localStorage.setItem('sessionID', sessionID);
+    //! Unnecessary. Session is in the cookie anyway.
+    //! localStorage.setItem('sessionID', sessionID);
 
     showUserLoggedIn(username);
 };
 
 
 function handleLogout() {
-    handleLogout();
+    //! handleLogout(); Infinte call stack
     localStorage.removeItem('userId');
-    localStorage.removeItem('sessionID');
+    //! Unnecessary. Session is in the cookie anyway.
+    //! localStorage.removeItem('sessionID');
     showLoginButton();
 };
 function checkLoggedInStatus() {
-    const sessionID = localStorage.getItem('sessionID');
+    // const sessionID = localStorage.getItem('sessionID');
     const userId = localStorage.getItem('userId');    
-    if (userId && sessionID) {
+    if (userId /*&& sessionID*/) {
         showUserLoggedIn(userId);
     } else {
         showLoginButton();
@@ -221,12 +223,14 @@ function checkLoggedInStatus() {
 };
 async function logout() {
     try {
-        const sessionID = localStorage.getItem('sessionID');
+        //! Unnecessary. Session is in the cookie anyway.
+        //! const sessionID = localStorage.getItem('sessionID');
         const response = await fetch('http://localhost:3000/auth/logout', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${sessionID}`, // Include the session ID in the headers
+                //! Unnecessary. Session is in the cookie anyway.
+                //! 'Authorization': `Bearer ${sessionID}`, // Include the session ID in the headers
             },
         });
 
@@ -237,11 +241,11 @@ async function logout() {
         } else {
             // Logout failed
             console.error('Logout failed:', response.status, response.statusText);
-            alert('Logout failed. Please try again.');
+            alert('244: Logout failed. Please try again.');
         }
     } catch (error) {
         console.error('Logout failed:', error);
-        alert('Logout failed. Please try again.');
+        alert('248: Logout failed. Please try again.');
     }
     checkLoggedInStatus();
 };
