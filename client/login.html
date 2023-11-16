@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Croissant+One&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Croissant+One&family=M+PLUS+Rounded+1c&family=Space+Mono&display=swap" rel="stylesheet">
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <title>login</title>
+    
+</head>
+<div>
+    <header>
+        <div id="header-container">
+        </div>
+    </header>
+    <main id="pageContent">
+        <div id="login-container">
+            <div class="image-container">
+                <img src="./images/chocolateMousse.jpg" alt="Chocolate" id="ChocolateMousse">
+            </div>
+            <div class="login-form">
+                <h2>Login</h2>
+                <form id="loginForm" action="/auth/login" method="post" class="login-form tooltip-container">
+                    <div class="tooltip-container">
+                        <div style="margin-bottom: 10px">
+                            <label for="login-username">Username:</label>
+                            <input type="text" id="login-username" name="login-username" onmouseover="showTooltip('login-username')" onmouseout="hideTooltip('login-username')">
+                            <div id="tooltip-login-username" class="tooltip">Enter your username for login.</div>
+                        </div>
+                        <div style="margin-bottom: 10px">
+                            <label for="password">Password:</label>
+                            <input type="password" id="login-password" name="password" onmouseover="showTooltip('login-password')" onmouseout="hideTooltip('login-password')">
+                            <div id="tooltip-login-password" class="tooltip">Enter your password for Login.</div>
+                        </div>
+                        <div style="padding: 10px">
+                            <button id="login-button" class="myButton" type="submit" onclick="onLoginHandle(event)">Login</button>
+                        </div>
+                    </div>    
+                </form>
+                <div>
+                    <a href="#" onclick="toggleRecoverPassword()" id="recoverPasswordLink">Forgot Password?</a>
+                </div>
+                <div id="recover-password-email" style="display: none;">
+                    <form id="recoverPasswordForm" onsubmit="recoverPassword(event)">
+                        <div>
+                            <label for="recover-email">Email:</label>
+                            <input type="email" id="recover-email" name="email" required>
+                        </div>
+                        <div>
+                            <a href="#" class="myButton" onclick="toggleRecoverPassword()">Recover Password</a>
+                        </div>
+                    </form>
+                    <div id="recover-password-username" style="display: none;">
+                        <form id="recoverPasswordUsernameForm" onsubmit="recoverPasswordByUsername(event)">
+                            <div>
+                                <label for="recover-username">Username:</label>
+                                <input type="text" id="recover-username" name="username" required>
+                            </div>
+                            <div>
+                                <a href="#" class="myButton" onclick="toggleRecoverPasswordByUsername()">Recover Password</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="recover-password-email" style="display: none;">
+                        <form id="recoverPasswordEmailForm" onsubmit="recoverPasswordByEmail(event)">
+                            <div>
+                                <label for="recover-email">Email:</label>
+                                <input type="email" id="recover-email" name="email" required>
+                            </div>
+                            <div>
+                                <button class="myButton" type="submit">Recover Password</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <p>
+                    <a href="./register.html" class="content-link">New? Register here</a>
+                </p>
+                </div>
+            </div>
+    </main>
+    <script src="./main.js"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Croissant+One&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Croissant+One&family=M+PLUS+Rounded+1c&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>OurBlog</title>
+</head>
+<body>
+    <header>
+        <div class="header-container" id="header-container">
+            <a href="javascript:void(0);" onclick="changeContent('login.html')" class="cremeButton" id="main-login-button">Login</a>
+            <div id="user-info" style="display: none;"><br></div>
+            <a href="#" id="logoff-button" style="display: none;" onclick="onLogoffButtonClick()">Logoff</a>
+            
+            <h1 id="pickacook">Pick-a-Cook</h1>
+            <div id="user-info" style="display: none;"></div>
+            
+        </div>
+        <div id="navbar" class="topnav">
+            <ul>
+                <li><a class="content-link" href="./homePage.html">Home</a></li>
+                <li><a class="content-link" href="/blogs">Blogs</a></li>
+                <li><a class="content-link" href="./register.html">Register</a></li>
+                <li><a class="content-link" href="./login.html">Login</a></li>
+            </ul>
+            </ul>
+        </div>
+    </header>
+    <main style="margin-left: 40px" id="pageContent">
+    </main>
+    <footer>
+    </footer>
+    <script src="./main.js"></script>
+    
+    
+</body>
+</html>
