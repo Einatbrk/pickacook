@@ -1,6 +1,6 @@
 const session = require('express-session');
 const SequelizeStore = require('express-session-sequelize')(session.Store);
-const { sequelize, Session } = require('./sequelize.js');
+const { sequelize } = require('./sequelize.js');
 
 const oneDay = 1000 * 60 * 60 * 24;
 

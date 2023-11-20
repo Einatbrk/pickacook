@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const SequelizeStore = require('express-session-sequelize')(session.Store);
+
 const path = require('path');
 
 const nodemailer = require('nodemailer');
@@ -11,11 +11,11 @@ const nodemailer = require('nodemailer');
 const PORT = process.env.PORT || 3000;
 
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'einatexpressproject@gmail.com',
-        pass: 'Ein@t160188'
-    }
+  service: 'gmail',
+  auth: {
+    user: 'einatexpressproject@gmail.com',
+    pass: 'Ein@t160188'
+  }
 });
 
 const corsOptions = {
@@ -27,19 +27,27 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use(express.static(path.join(__dirname, 'client')));
+// Sessions for whole app
+app.use(session(require('./router/sessionConfig.js')));
 
-const authAPI = require('./router/authApi.js');
-app.use('/auth', authAPI);
+// Session middleware
+app.use(require('./mw/session.js').logSessionId)
 
-app.get('/:pageName', (req, res) => {
-    const pageName = req.params.pageName;
-    res.json(`Welcome to ${pageName} page`);
-});
-app.get('/:userId', (req, res) => {
-  const userId = req.params.userId;
-  res.json(`Welcome${userId}`);
-});
+// Static files
+app.use(express.static(path.join(__dirname, '../client')));
+
+// Authentication routes
+app.use('/auth', require('./router/authApi.js'));
+
+// tests
+// app.get('/:pageName', (req, res) => {
+//     const pageName = req.params.pageName;
+//     res.json(`Welcome to ${pageName} page`);
+// });
+// app.get('/:userId', (req, res) => {
+//   const userId = req.params.userId;
+//   res.json(`Welcome${userId}`);
+// });
 
 app.set('transporter', transporter);
 
